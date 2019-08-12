@@ -22,14 +22,13 @@ steps:
   - go get github.com/shuLhan/go-bindata/cmd/go-bindata
   - make build-linux
 
-#- name: github-release
-#  image: plugins/github-release
-#  settings:
-#    files: "target/scala*/jvm-csdl-util.jar"
-#    prerelease: true
-#  environment:
-#    GITHUB_TOKEN:
-#      from_secret: github_token
-#  when:
-#    event:
-#    - tag
+- name: github-release
+  image: plugins/github-release
+  settings:
+    files: carbon-relay-ng
+  environment:
+    GITHUB_TOKEN:
+      from_secret: github_api_key
+  when:
+    event:
+    - tag
